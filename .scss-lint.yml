@@ -1,0 +1,526 @@
+linters:
+
+  # If an exclamation point must be used, there should be a space before but not after
+  #
+  # Good: `color: $color-primary !important`
+  # Bad: `color: $color-primary ! important`
+  BangFormat:
+    enabled: true
+    space_before_bang: true
+    space_after_bang: false
+
+  BemDepth:
+    enabled: false
+
+  # Good: `border: 0`
+  # Bad: `border:none`
+  BorderZero:
+    enabled: true
+
+  # Always use hex codes over human aliases
+  #
+  # Good: `#000`
+  # Bad: `black`
+  ColorKeyword:
+    enabled: true
+
+  # Use variables instead of raw color values
+  #
+  # Good: `$primary-color: #000; color: $color-primary;`
+  # Bad: `color: #000;`
+  Color Variable:
+    enabled: true
+
+  # Use inline-style comments instead of multi-line
+  #
+  # Good: `// comment`
+  # Bad: `/* comment */`
+  Comment:
+    enabled: true
+
+  # Ignore
+  CompassLinters:
+    enabled: false
+
+  # remove all `@debug` statements
+  DebugStatement:
+    enabled: true
+
+  # Good: @extend, @include (no @content), @include (with @content), regular rules
+  DeclarationOrder:
+    enabled: true
+
+  # Good:
+  # ```
+  # // We really prefer `border: none` in this file, for reasons.
+  # // scss-lint:disable BorderZero
+  # ```
+  #
+  # Bad: `// scss-lint:disable BorderZero`
+  DisableLinterReason:
+    enabled: true
+
+  # Don't duplicate properties within the same selector
+  #
+  # Bad: `margin: 10px; color: $color-primary; margin: 0;` (`margin` is repeated)
+  DuplicateProperty:
+    enabled: true
+
+  # Forbid stroustrup syntax
+  #
+  # Good: `} @else {`
+  # Bad: `}\n@else {`
+  ElsePlacement:
+    enabled: true
+    style: same_line
+
+  # Good:
+  # ```
+  # p {
+  #   margin: 0;
+  #
+  #   em {
+  #     ...
+  #   }
+  # }
+  #
+  # a {
+  #   ...
+  # }
+  # ```
+  #
+  # Bad:
+  # ```
+  # p{
+  #   margin: 0;
+  #   em {
+  #     ...
+  #   }
+  # }
+  # a {
+  #   ...
+  # }
+  # ```
+  #
+  # Also bad: `p { margin: 0; em { ... } } a { ... }`
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: false
+
+  # Require selectors to have at least one property
+  #
+  # Good: `a { color: $color-primary; }`
+  # Bad: `a { }` (empty)
+  EmptyRule:
+    enabled: true
+
+  # Use of the `@extend` directive is permitted
+  ExtendDirective:
+    enabled: false
+
+  # EOF newline
+  FinalNewline:
+    enabled: true
+    present: true
+
+  # Prefer short hex over long hex
+  #
+  # Good: `#f2e`
+  # Bad: `#ff22ee`
+  HexLength:
+    enabled: true
+    style: short
+
+  # Lowercase
+  #
+  # Good: `#eee`
+  # Bad: `#EEE`
+  HexNotation:
+    enabled: true
+    style: lowercase
+
+  # Ensures hex lengths are 3 or 6
+  HexValidation:
+    enabled: true
+
+  # Disallow IDs as stylesheet selectors
+  #
+  # Good: `.account .submit-button {`
+  # Bad: `#account-submit {`
+  IdSelector:
+    enabled: true
+
+  # Disallow `important`
+  #
+  # Good: `color: $color-primary`
+  # Bad: `color: $color-primary !important`
+  ImportantRule:
+    enabled: true
+
+  # `@import 'base/reset'` not `@import 'base/_reset.scss'`
+  ImportPath:
+    enabled: true
+    leading_underscore: false
+    filename_extension: false
+
+  # Use tabs for indentions
+  Indentation:
+    enabled: true
+    character: tab
+    width: 1
+
+  # Good: `margin: 0.5em`
+  # Bad: `margin: .5em` (less clear at a glance)
+  LeadingZero:
+    enabled: true
+    style: include_zero
+
+  # If `h1` is defined in multiple places
+  MergeableSelector:
+    enabled: false
+
+  # NameFormat:
+    # enabled: true
+    # convention: hyphenated_lowercase
+
+  # Good: `.one .two .three { ... }`
+  # Bad:
+  # ```
+  # .one {
+  #   .two {
+  #     .three {
+  #       ...
+  #     }
+  #   }
+  # }
+  # ```
+  NestingDepth:
+    enabled: true
+    max_depth: 3
+
+  # Only extend placeholders -- not classes.
+  # Reasoning: http://8gramgorilla.com/mastering-sass-extends-and-placeholders/
+  #
+  # Good: `@extend %error`
+  # Bad: `@extend .error`
+  PlaceholderInExtend:
+    enabled: true
+
+  # Specify as many properties as you want
+  PropertyCount:
+    enabled: false
+
+  # Sort properties in alphabetical order.
+  #
+  # Good:
+  # ```
+  # a {
+  #   border: 0;
+  #   color: $color-primary;
+  #   display: inline-block;
+  #   margin: 0;
+  #   padding: 0;
+  #   text-decoration: underline;
+  # }
+  # ```
+  PropertySortOrder:
+    enabled: true
+
+  # Require proper spelling
+  #
+  # Good: `display: none`
+  # Bad: `diplay: none`
+  PropertySpelling:
+    enabled: true
+    extra_properties: []
+
+  # Relative units should be used for all units with a few obvious/necessary exceptions (e.g. border)
+  PropertyUnits:
+    enabled: true
+    global: ['em', 'rem', '%']
+    properties:
+      border: ['px']
+      margin: ['%', 'px']
+      padding: ['%', 'px']
+      width: ['%', 'px']
+
+  # Enforce proper colon usage on pseudo-elements and psueod-classes.
+  #
+  # Good: `p::before { ... }` (pseudo-element)
+  # Good: `p:hover { ... }` (pseudo-class)
+  # Bad: `p:before { ... }` (pseudo-element with psuedo-class syntax)
+  # Bad: `p::hover { ... }` (pseudo-class with pesudo-element syntax)
+  PseudoElement:
+    enabled: true
+
+  # Avoid being unnecessarily specific.
+  #
+  # Good:
+  # ```
+  # #foo {
+  #   ...
+  # }
+  #
+  # .list {
+  #   ...
+  # }
+  #
+  # ul .item {
+  #   ...
+  # }
+  #
+  # [href='location'] {
+  #   ...
+  # }
+  # ```
+  #
+  # Bad:
+  # ```
+  # div#foo {
+  #   ...
+  # }
+  #
+  # ul.list {
+  #   ...
+  # }
+  #
+  # ul .item {
+  #   ...
+  # }
+  #
+  # a[href='location'] {
+  #   ...
+  # }
+  # ```
+  QualifyingElement:
+    enabled: true
+    allow_element_with_attribute: false
+    allow_element_with_class: false
+    allow_element_with_id: false
+
+  # Avoid unnecessarily nested selectors
+  #
+  # Good: `.one .two .three .four`
+  # Bad: `.one .two .three .four .five`
+  SelectorDepth:
+    enabled: true
+    max_depth: 4
+
+  # Selectors should be "hyphenated_lowercase".
+  #
+  # Good: `.foo-bar, foo-bar, #foo-bar`
+  # Bad: `.foo_bar, foo_bar, #foo_bar`
+  # Bad: `.fooBar, fooBar, #fooBar`
+  SelectorFormat:
+    enabled: true
+
+  # Use shorthand when available.
+  #
+  # Good: `margin: 1px`
+  # Bad: `margin: 1px 1px 1px 1px`
+  Shorthand:
+    enabled: true
+
+  # Each property should be on its own line.
+  #
+  # Good:
+  # ```
+  # p {
+  #   margin: 0;
+  #   padding: 0;
+  # }
+  # ```
+  #
+  # Bad:
+  # ```
+  # p {
+  #   margin: 0; padding: 0:
+  # }
+  # ```
+  #
+  # Bad: `p { margin: 0; padding: 0; }`
+  SingleLinePerProperty:
+    enabled: true
+    allow_single_line_rule_sets: false
+
+  # Each selector should be on its own line (on comma).
+  #
+  # Good:
+  # ```
+  # .error p,
+  # p.explanation {
+  #   ...
+  # }
+  # ```
+  #
+  # Bad:
+  # ```
+  # .error p, p.explanation {
+  #   ...
+  # }
+  # ```
+  SingleLinePerSelector:
+    enabled: true
+
+  # One space after commas.
+  #
+  # Good: `rgba(0, 0, 0, 0.1)`
+  # Bad: `rgba(0,0,0,0.1)`
+  SpaceAfterComma:
+    enabled: true
+    style: one_space
+
+  # One space after colon
+  #
+  # Good: `margin: 0`
+  # Bad: `margin:0`
+  # Bad: `margin:  0` (more than one space)
+  SpaceAfterPropertyColon:
+    enabled: true
+    style: one_space
+
+  # No space between property and colon.
+  #
+  # Good: `margin: 0`
+  # Bad: `margin : 0`
+  SpaceAfterPropertyName:
+    enabled: true
+
+  # No space before colon in variable declaration
+  #
+  # Good: `$color-primary: #000`
+  # Bad: `$color-primary : #000`
+  SpaceAfterVariableName:
+    enabled: true
+
+  # One space on either side of operators
+  #
+  # Good: `2 + 2`
+  # Bad: `2+2`
+  # Bad: `2  +  2`
+  SpaceAroundOperator:
+    enabled: true
+    style: one_space
+
+  # Opening braces should be preceded by one space.
+  #
+  # Good: `p { ... }`
+  # Bad: `p{ ... }`
+  # Bad: `p  { ... }`
+  SpaceBeforeBrace:
+    enabled: true
+    style: space
+    allow_single_line_padding: true # One-liners are not currently permitted though
+
+  # No superfluous spaces inside of open/close parentheses
+  #
+  # Good: `rgba(0, 0, 0, 0.1)`
+  # Bad: `rgba( 0, 0, 0, 0.1 )`
+  SpaceBetweenParens:
+    enabled: true
+    spaces: 0
+
+  # Use single-quotes instead of double-quotes
+  #
+  # Good: `content: 'hello'` # single-quote
+  # Good: `content: "'hello'"` # double-quotes used to avoid escape characters
+  # Bad: `content: "hello"` # double-quotes without a greater purpose
+  StringQuotes:
+    enabled: true
+    style: single_quotes
+
+  # Enforce existence of (and reasonable spacing around) trailing semicolons
+  #
+  # Good: `color: $color-primary;`
+  # Bad: `color: $color-primary`
+  # Bad: `color: $color-primary ;`
+  TrailingSemicolon:
+    enabled: true
+
+  # Report lines with trailing whitespace
+  TrailingWhitespace:
+    enabled: true
+
+  # Avoid unnecessary trailing zeros
+  #
+  # Good: `margin: 0.5em`
+  # Bad: `margin: 0.5000em` # Unnecessary
+  TrailingZero:
+    enabled: true
+
+  # No rules
+  TransitionAll:
+    enabled: false
+
+  # Avoid unnecessary decimals/fractions
+  #
+  # Good: `margin: 1em`
+  # Bad: `margin 1.0em`
+  UnnecessaryMantissa:
+    enabled: true
+
+  # Avoid unnecessary parent references
+  #
+  # Good:
+  # ```
+  # .foo {
+  #   & > .bar {
+  #     ...
+  #   }
+  # }
+  # ```
+  #
+  # Bad:
+  # ```
+  # .foo {
+  #   > .bar {
+  #     ...
+  #   }
+  # }
+  # ```
+  UnnecessaryParentReference:
+    enabled: true
+
+  # Urls should not contain a protocol or domain
+  #
+  # Good: `url('assets/image.png')`
+  # Bad: `url('http://example.com/assets/image.png')`
+  UrlFormat:
+    enabled: true
+
+  # Urls must be encapsulated in quotes
+  #
+  # Good: `url('image.png')`
+  # Bad: `url(image.png)`
+  UrlQuotes:
+    enabled: true
+
+  # Require variables to be used with certain properties
+  #
+  # Good: `color: $color-primary`
+  # Bad: `color: #000`
+  VariableForProperty:
+    enabled: true
+    properties:
+      - color
+      - font
+
+  # Don't use vendor prefixes...let Autoprefixer (or something similar) take care of that
+  #
+  # Good: `transition: none`
+  # Bad: `-webkit-transition: none`
+  VendorPrefixes:
+    enabled: true
+    identifier_list: base
+    include: []
+    exclude: []
+
+  # Don't use units with a "0" value...the unit doesn't matter
+  #
+  # Good: `margin: 0`
+  # Bad: `margin: 0em`
+  ZeroUnit:
+    enabled: true
+
+  Compass::*:
+    enabled: false
