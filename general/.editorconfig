@@ -16,6 +16,6 @@ insert_final_newline = true
 [*.{md,mdown,markdown}]
 trim_trailing_whitespace = false
 
-[{*.{yaml,yml},.eslintrc}]
+[{*.{yaml,yml},.eslintrc,Vagrantfile,package.json}]
 indent_style = space
 indent_size = 2
